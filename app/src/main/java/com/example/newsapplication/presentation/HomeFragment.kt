@@ -1,7 +1,6 @@
 package com.example.newsapplication.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapplication.R
 import com.example.newsapplication.data.NewsRepository
+import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentMainBinding
 
 class HomeFragment : Fragment(), Listeners {
 
+    companion object{
+        const val NO_IMAGE_URL = "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+    }
+
     private lateinit var binding: FragmentMainBinding
-    private lateinit var adapter: ArticleAdapter
+    private lateinit var adapter: NewsAdapter
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
@@ -34,7 +37,7 @@ class HomeFragment : Fragment(), Listeners {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
-        adapter = ArticleAdapter(this)
+        adapter = NewsAdapter(this)
         binding.recyclerview.adapter = adapter
 
         val repository = NewsRepository()
@@ -42,11 +45,16 @@ class HomeFragment : Fragment(), Listeners {
         viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
         viewModel.getArticle()
         viewModel.myResponse.observe(viewLifecycleOwner, Observer {articlesList ->
-            adapter.contentList = articlesList
+            articlesList.forEach {
+                if (it.author == null) it.author = "No Author"
+                if (it.urlToImage == null) it.urlToImage = NO_IMAGE_URL
+            }
+            adapter.setList(articlesList)
         })
     }
 
-    override fun readArticle() {
-        findNavController().navigate(R.id.action_mainFragment_to_articleFragment)
+    override fun readArticle(currentArticle: Article) {
+        val action = HomeFragmentDirections.actionMainFragmentToArticleFragment(currentArticle)
+        findNavController().navigate(action)
     }
 }

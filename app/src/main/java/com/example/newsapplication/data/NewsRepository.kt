@@ -1,5 +1,6 @@
 package com.example.newsapplication.data
 
+import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.data.api.ArticlesArray
 
 class NewsRepository {
