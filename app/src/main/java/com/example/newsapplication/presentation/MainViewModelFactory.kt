@@ -1,7 +1,8 @@
-package com.example.newsapplication.data
+package com.example.newsapplication.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.newsapplication.data.NewsRepository
 
 class MainViewModelFactory(private val repository: NewsRepository): ViewModelProvider.Factory{
 

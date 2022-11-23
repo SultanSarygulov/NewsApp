@@ -1,4 +1,4 @@
-package com.example.newsapplication.data
+package com.example.newsapplication.data.api
 
 class Constants {
 
