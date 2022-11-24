@@ -20,14 +20,16 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
         val diffResult = DiffUtil.calculateDiff(callback)
         articleList.clear()
         articleList.addAll(newList)
+        //Log.d("TAG", "Finish")
         diffResult.dispatchUpdatesTo(this)
+        //Log.d("TAG", "FIIIIIIIIIINIIIIIIIIIISHHHH")
     }
 
     inner class ViewHolder(item: View): RecyclerView.ViewHolder(item){
         val binding = ArticleItemBinding.bind(item)
         fun bind(article: Article) = with(binding){
             articleTitle.text = article.title
-            articleAuthor.text = article.author ?: "No Author"
+            articleAuthor.text = article.author
             articleDate.text = article.publishedAt
             articleContent.text = article.content
             Glide
@@ -51,7 +53,8 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
         Log.d("TAG", "${articleList[position].author}")
     }
 
-
-
     override fun getItemCount(): Int = articleList.size
+
+
+
 }

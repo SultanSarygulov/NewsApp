@@ -7,14 +7,15 @@ import com.example.newsapplication.data.NewsRepository
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.data.api.ArticlesArray
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class MainViewModel(private val repository: NewsRepository): ViewModel() {
 
-    val myResponse: MutableLiveData<List<Article>> = MutableLiveData()
+    val myResponse: MutableLiveData<Response<ArticlesArray>> = MutableLiveData()
 
     fun getArticle(){
         viewModelScope.launch {
-            val response = repository.getArticle().articles
+            val response = repository.getArticle()
             myResponse.value = response
         }
     }
