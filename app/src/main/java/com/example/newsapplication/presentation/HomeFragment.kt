@@ -83,12 +83,6 @@ class HomeFragment : Fragment(), Listeners {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater): Boolean {
-
-        inflater.inflate(R.menu.search, menu)
-        return true
-    }
-
 
 
 }
