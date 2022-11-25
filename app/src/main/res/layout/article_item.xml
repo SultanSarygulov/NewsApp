@@ -19,6 +19,15 @@
         android:layout_height="match_parent"
         android:padding="10dp">
 
+        <ProgressBar
+            android:id="@+id/article_image_progress"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/article_image"
+            app:layout_constraintEnd_toEndOf="@+id/article_image"
+            app:layout_constraintStart_toStartOf="@+id/article_image"
+            app:layout_constraintTop_toTopOf="@+id/article_image" />
+
         <ImageView
             android:id="@+id/article_image"
             android:layout_width="111dp"
@@ -27,7 +36,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"/>
 
         <TextView
             android:id="@+id/article_title"

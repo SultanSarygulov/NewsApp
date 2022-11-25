@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.doOnLayout
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -17,6 +20,7 @@ import com.example.newsapplication.R
 import com.example.newsapplication.data.NewsRepository
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentHomeBinding
+import com.example.newsapplication.presentation.HomeFragment.Companion.NO_IMAGE_URL
 
 class HomeFragment : Fragment(), Listeners {
 
@@ -41,11 +45,11 @@ class HomeFragment : Fragment(), Listeners {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         setAdapter()
         setViewModel()
         getNews()
-
-
     }
 
     private fun setAdapter(){
@@ -64,7 +68,7 @@ class HomeFragment : Fragment(), Listeners {
     private fun getNews(){
         viewModel.getArticle()
         viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
-
+            binding.progressBar.isGone = true
             response.body()?.let { response ->
                 response.articles.forEach { article ->
                     if (article.urlToImage == null ) article.urlToImage = NO_IMAGE_URL
@@ -82,7 +86,4 @@ class HomeFragment : Fragment(), Listeners {
         findNavController().navigate(action)
 
     }
-
-
-
 }
