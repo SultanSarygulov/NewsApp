@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -26,9 +27,7 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
         val diffResult = DiffUtil.calculateDiff(callback)
         articleList.clear()
         articleList.addAll(newList)
-        //Log.d("TAG", "Finish")
         diffResult.dispatchUpdatesTo(this)
-        //Log.d("TAG", "FIIIIIIIIIINIIIIIIIIIISHHHH")
     }
 
     inner class ViewHolder(item: View): RecyclerView.ViewHolder(item){
@@ -38,6 +37,7 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
             articleAuthor.text = article.author
             articleDate.text = article.publishedAt
             articleContent.text = article.content
+            articleImageProgress.isVisible = true
             Glide
                 .with(root)
                 .load(article.urlToImage)
@@ -73,7 +73,7 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(articleList[position])
-        Log.d("TAG", "${articleList[position].author}")
+        Log.d("TAG", "${articleList[position].title} ${articleList[position].urlToImage}")
     }
 
     override fun getItemCount(): Int = articleList.size

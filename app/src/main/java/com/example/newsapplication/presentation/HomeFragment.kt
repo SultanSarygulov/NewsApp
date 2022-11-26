@@ -67,17 +67,16 @@ class HomeFragment : Fragment(), Listeners {
 
     private fun getNews(){
         viewModel.getArticle()
-        viewModel.myResponse.observe(viewLifecycleOwner, Observer {response ->
+        viewModel.myResponse.observe(viewLifecycleOwner, Observer {articles ->
             binding.progressBar.isGone = true
-            response.body()?.let { response ->
-                response.articles.forEach { article ->
-                    if (article.urlToImage == null ) article.urlToImage = NO_IMAGE_URL
-                    if (article.title == null ) article.title = "No Title"
-                    if (article.author == null ) article.urlToImage = "No Author"
-                }
-                adapter.setList(response.articles)
-            } ?:
-            Toast.makeText(requireContext(), "Something went wrong(", Toast.LENGTH_SHORT)
+            articles.forEach { article ->
+                if (article.urlToImage == null ) article.urlToImage = NO_IMAGE_URL
+                if (article.title == null ) article.title = "No Title"
+                if (article.author == null ) article.author = "No Author"
+            }
+            Log.d("TAG","$articles")
+            adapter.setList(articles)
+
         })
     }
 

@@ -28,16 +28,7 @@ class ArticleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentArticleBinding.inflate(inflater, container, false)
-//        binding.apply {
-//            articleTitleRead.setText(args.currentArticle.title)
-//            articleDescriptionRead.setText(args.currentArticle.description)
-//            articleContentRead.setText(args.currentArticle.content)
-//            Glide
-//                .with(root)
-//                .load(args.currentArticle.urlToImage)
-//                .into(articleImageRead)
-//        }
-        Log.d("TAG", "Started")
+
         return binding.root
     }
 
@@ -58,7 +49,6 @@ class ArticleFragment : Fragment() {
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
-            Log.d("TAG", "Finished")
             binding.progressBar.isVisible = false
             binding.webview.isVisible = true
         }

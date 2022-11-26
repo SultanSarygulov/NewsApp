@@ -1,6 +1,8 @@
 package com.example.newsapplication.presentation
 
-import android.util.Log
+import android.app.Application
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,12 +14,17 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: NewsRepository): ViewModel() {
 
-    val myResponse: MutableLiveData<Response<ArticlesArray>> = MutableLiveData()
+    val myResponse: MutableLiveData<List<Article>> = MutableLiveData()
 
     fun getArticle(){
         viewModelScope.launch {
             val response = repository.getArticle()
-            myResponse.value = response
+            if (response.isSuccessful){
+                myResponse.value = response.body()?.articles
+            }
+            else {
+                TODO()
+            }
         }
     }
 

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="138dp"
+    android:layout_height="150dp"
     app:cardCornerRadius="10dp"
     android:elevation="5dp"
     android:layout_marginHorizontal="16dp"
@@ -42,6 +42,7 @@
             android:id="@+id/article_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxHeight="55dp"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Article Title"
@@ -51,12 +52,13 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/article_image"
             app:layout_constraintTop_toTopOf="@+id/article_image"
-            tools:text="Apple's 2021 App Store Awards highlight 'connection'" />
+            tools:text="[Updated] Here are all the best Black Friday deals live now" />
 
         <TextView
             android:id="@+id/article_content"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="55dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto_light"
