@@ -22,7 +22,7 @@ import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentHomeBinding
 import com.example.newsapplication.presentation.HomeFragment.Companion.NO_IMAGE_URL
 
-class HomeFragment : Fragment(), Listeners {
+class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
 
     companion object{
         const val NO_IMAGE_URL = "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
@@ -39,6 +39,9 @@ class HomeFragment : Fragment(), Listeners {
         // Inflate the layout for this fragmen
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        activity?.setActionBar(binding.toolbar)
+        binding.searchView.setOnQueryTextListener(this)
+
         return binding.root
     }
 
@@ -50,6 +53,12 @@ class HomeFragment : Fragment(), Listeners {
         setAdapter()
         setViewModel()
         getNews()
+
+        binding.refresh.setOnClickListener {
+            viewModel.myResponse.observe(viewLifecycleOwner) { articles ->
+                adapter.setList(articles)
+            }
+        }
     }
 
     private fun setAdapter(){
@@ -84,5 +93,20 @@ class HomeFragment : Fragment(), Listeners {
         val action = HomeFragmentDirections.actionMainFragmentToArticleFragment(currentArticle)
         findNavController().navigate(action)
 
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null){
+            viewModel.myResponse.observe(viewLifecycleOwner) { articles ->
+                val newList = articles.filter { query in it.title}
+                adapter.setList(newList)
+            }
+        }
+        return true
     }
 }

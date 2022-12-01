@@ -7,13 +7,15 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.newsapplication.R
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
@@ -21,17 +23,13 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        setActionBar(binding.toolbar)
-        binding.searchView.setOnQueryTextListener(this)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setContentView(binding.root)
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return true
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        return true
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = Navigation.findNavController(this, R.id.nav_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
