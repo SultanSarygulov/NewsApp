@@ -40,6 +40,7 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         activity?.setActionBar(binding.toolbar)
+        //activity?.actionBar?.title = "Breaking News"
         binding.searchView.setOnQueryTextListener(this)
 
         return binding.root
