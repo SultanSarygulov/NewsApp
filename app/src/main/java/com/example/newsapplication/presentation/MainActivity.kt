@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.newsapplication.R
 import com.example.newsapplication.data.api.Article
@@ -23,13 +24,15 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        val navController = this.findNavController(R.id.navHostFragment)
+//        NavigationUI.setupActionBarWithNavController(this, navController)
 
         setContentView(binding.root)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = Navigation.findNavController(this, R.id.nav_fragment)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        val navController = this.findNavController(R.id.navHostFragment)
+        return navController.navigateUp()
     }
 }
