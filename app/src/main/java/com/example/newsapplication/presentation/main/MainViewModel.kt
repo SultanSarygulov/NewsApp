@@ -1,6 +1,7 @@
 package com.example.newsapplication.presentation.main
 
 import android.app.Application
+import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +13,7 @@ import com.example.newsapplication.data.api.ArticlesArray
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MainViewModel(private val repository: NewsRepository): ViewModel() {
+class MainViewModel(private val repository: NewsRepository, application: Application?): AndroidViewModel(application!!) {
 
     val myResponse: MutableLiveData<List<Article>> = MutableLiveData()
 
@@ -23,7 +24,7 @@ class MainViewModel(private val repository: NewsRepository): ViewModel() {
                 myResponse.value = response.body()?.articles
             }
             else {
-                TODO()
+                Toast.makeText(getApplication(), "Something went wrong(", Toast.LENGTH_LONG).show()
             }
         }
     }

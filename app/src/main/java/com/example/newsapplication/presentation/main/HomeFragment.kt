@@ -43,8 +43,6 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         setAdapter()
         setViewModel()
         getNews()
@@ -70,7 +68,7 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
 
     private fun setViewModel(){
         val repository = NewsRepository()
-        val mainViewModelFactory = MainViewModelFactory(repository)
+        val mainViewModelFactory = MainViewModelFactory(repository, activity?.application)
         viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
     }
 
