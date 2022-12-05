@@ -1,4 +1,4 @@
-package com.example.newsapplication.presentation
+package com.example.newsapplication.presentation.main
 
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -16,6 +16,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.ArticleItemBinding
+import com.example.newsapplication.presentation.Listeners
+import com.example.newsapplication.presentation.NewsUtilCallback
 
 class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
@@ -66,7 +68,7 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ArticleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding.root)
     }

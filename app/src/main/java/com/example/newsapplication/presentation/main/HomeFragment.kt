@@ -1,26 +1,20 @@
-package com.example.newsapplication.presentation
+package com.example.newsapplication.presentation.main
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.L
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.doOnLayout
-import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newsapplication.R
 import com.example.newsapplication.data.NewsRepository
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentHomeBinding
-import com.example.newsapplication.presentation.HomeFragment.Companion.NO_IMAGE_URL
+import com.example.newsapplication.presentation.Listeners
+import com.example.newsapplication.presentation.MainViewModelFactory
 
 class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
 
@@ -59,6 +53,11 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
             viewModel.myResponse.observe(viewLifecycleOwner) { articles ->
                 adapter.setList(articles)
             }
+        }
+
+        binding.saved.setOnClickListener {
+            val action = HomeFragmentDirections.actionMainFragmentToSavedFragment()
+            findNavController().navigate(action)
         }
     }
 

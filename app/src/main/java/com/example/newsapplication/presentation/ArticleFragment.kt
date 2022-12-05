@@ -14,11 +14,14 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.newsapplication.R
+import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentArticleBinding
+import com.example.newsapplication.presentation.main.NewsAdapter
 
-class ArticleFragment : Fragment() {
+class ArticleFragment : Fragment(), Listeners {
 
     private lateinit var binding: FragmentArticleBinding
+    private lateinit var adapter: SavedNewsAdapter
     private val args by navArgs<ArticleFragmentArgs>()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -38,6 +41,12 @@ class ArticleFragment : Fragment() {
 
         binding.webview.webViewClient = WebViewClient()
         binding.webview.loadUrl(args.currentArticle.url)
+
+        adapter = SavedNewsAdapter(this)
+
+        binding.favouriteButton.setOnClickListener {
+            adapter.addToSaved(args.currentArticle)
+        }
     }
 
     inner class WebViewClient: android.webkit.WebViewClient(){
@@ -52,5 +61,9 @@ class ArticleFragment : Fragment() {
             binding.progressBar.isVisible = false
             binding.webview.isVisible = true
         }
+    }
+
+    override fun readArticle(currentArticle: Article) {
+        TODO("Not yet implemented")
     }
 }

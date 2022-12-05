@@ -7,12 +7,15 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.newsapplication.presentation.HomeFragment"
+        android:name="com.example.newsapplication.presentation.main.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_mainFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
@@ -25,5 +28,17 @@
         <argument
             android:name="currentArticle"
             app:argType="com.example.newsapplication.data.api.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.example.newsapplication.presentation.SavedFragment"
+        android:label="@string/saved_news_title"
+        tools:layout="@layout/fragment_saved">
+        <action
+            android:id="@+id/action_savedFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_savedFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>
