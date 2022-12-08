@@ -1,11 +1,13 @@
 package com.example.newsapplication.presentation
 
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -16,13 +18,15 @@ import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.ArticleItemBinding
 import com.example.newsapplication.databinding.FragmentSavedBinding
 
-class SavedNewsAdapter(val listeners: Listeners): RecyclerView.Adapter<SavedNewsAdapter.SavedNewsHolder>() {
+class SavedNewsAdapter(val listeners: Listeners): ListAdapter<Article, SavedNewsAdapter.SavedNewsHolder>(DiffCallback()) {
 
     lateinit var binding: ArticleItemBinding
 
     var savedNewsList = mutableListOf<Article>()
-    fun addToSaved(currentArticle: Article){
+    fun updateData(currentArticle: Article){
         savedNewsList.add(currentArticle)
+        this.submitList(savedNewsList)
+        Log.d("TAG", "${savedNewsList.size}")
     }
 
     inner class SavedNewsHolder(item: View): RecyclerView.ViewHolder(item) {
@@ -72,9 +76,9 @@ class SavedNewsAdapter(val listeners: Listeners): RecyclerView.Adapter<SavedNews
     }
 
     override fun onBindViewHolder(holder: SavedNewsHolder, position: Int) {
-        holder.bind(savedNewsList[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = savedNewsList.size
+//    override fun getItemCount(): Int = savedNewsList.size
 
 }

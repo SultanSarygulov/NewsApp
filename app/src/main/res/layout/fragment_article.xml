@@ -8,67 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ArticleFragment">
 
-    <!-- <TextView
-                android:id="@+id/article_title_read"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Apple's 2021 App Store Awards highlight 'connection'le Title"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Apple's 2021 App Store Awards highlight 'connection'" />
-
-            <TextView
-                android:id="@+id/article_description_read"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto"
-                android:text="In this article: LumaFusion, Craft, news, gear, Carrot Weather, Space Marshals 3, gaming, Dazn, League of Legends: Wild Rift, Myst, Apple, Among Us, Canva, Toca Life World, Penaut, MARVEL Future Revolution, App Store Awards. Bumble, Fantasian"
-                android:textColor="#A6A7A7"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/article_title_read"
-                tools:text="In this article: LumaFusion, Craft, news, gear, Carrot Weather, Space Marshals 3, gaming, Dazn, League of Legends: Wild Rift, Myst, Apple, Among Us, Canva, Toca Life World, Penaut, MARVEL Future Revolution, App Store Awards. Bumble, Fantasian" />
-
-            <ImageView
-                android:id="@+id/article_image_read"
-                android:layout_width="0dp"
-                android:layout_height="186dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/article_description_read"
-                app:srcCompat="@mipmap/ic_launcher" />
-
-            <TextView
-                android:id="@+id/article_content_read"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto_light"
-                android:text="Last year, Apple focused on quarantine life for its App Store Awards. For 2021, it's continuing that concept with a focus on &quot;connection&quot; as its trend of the year — basically, things that brought us together even though we're still dealing with a global pandemic. That trend award was bestowed upon five apps, including familiar names like Bumble and Among Us!. But the niche winners are even more interesting: there's EatOkra, an app that helps you find black-owned restaurants; Canva, which helps anyone create pro-grade designs; and Peanut, a social network focused on connecting women to find support throughout major life events. You'd probably be surprised by some of the winners for Apple's mainstay categories too: the Apple TV app of the year was the boxing streaming service Dazn, something I've admittedly never heard of. The Apple TV game of the year, Space Marshals 3, also came out of seemingly nowhere. But the strong review scores for both of those apps make it clear that users genuinely enjoy them.  While the App Store Awards are very much a marketing exercise, it's also a useful way to highlight some of the best apps users may have missed. (And I'm sure developers appreciate the recognition, and the aluminum App Store icon they can display on their shelves.) LumaFusion, the best iPad app of the year, makes complex multi-track video editing easy to do with your fingers. And Carrot Weather, the best Apple Watch app, looks like a truly unique watch face."
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/article_image_read"
-                tools:text="Last year, Apple focused on quarantine life for its App Store Awards. For 2021, it's continuing that concept with a focus on &quot;connection&quot; as its trend of the year — basically, things that brought us together even though we're still dealing with a global pandemic. That trend award was bestowed upon five apps, including familiar names like Bumble and Among Us!. But the niche winners are even more interesting: there's EatOkra, an app that helps you find black-owned restaurants; Canva, which helps anyone create pro-grade designs; and Peanut, a social network focused on connecting women to find support throughout major life events. You'd probably be surprised by some of the winners for Apple's mainstay categories too: the Apple TV app of the year was the boxing streaming service Dazn, something I've admittedly never heard of. The Apple TV game of the year, Space Marshals 3, also came out of seemingly nowhere. But the strong review scores for both of those apps make it clear that users genuinely enjoy them.  While the App Store Awards are very much a marketing exercise, it's also a useful way to highlight some of the best apps users may have missed. (And I'm sure developers appreciate the recognition, and the aluminum App Store icon they can display on their shelves.) LumaFusion, the best iPad app of the year, makes complex multi-track video editing easy to do with your fingers. And Carrot Weather, the best Apple Watch app, looks like a truly unique watch face." />-->
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"

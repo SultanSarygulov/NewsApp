@@ -3,6 +3,7 @@ package com.example.newsapplication.presentation.main
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.isGone
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newsapplication.R
 import com.example.newsapplication.data.NewsRepository
 import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.FragmentHomeBinding
@@ -34,7 +36,8 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         activity?.setActionBar(binding.toolbar)
-        //activity?.actionBar?.title = "Breaking News"
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(true)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Breaking news"
         binding.searchView.setOnQueryTextListener(this)
 
         return binding.root
@@ -81,7 +84,6 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
                 if (article.title == null ) article.title = "No Title"
                 if (article.author == null ) article.author = "No Author"
             }
-            Log.d("TAG","$articles")
             adapter.setList(articles)
 
         })

@@ -75,7 +75,6 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(articleList[position])
-        Log.d("TAG", "${articleList[position].title} ${articleList[position].urlToImage}")
     }
 
     override fun getItemCount(): Int = articleList.size
