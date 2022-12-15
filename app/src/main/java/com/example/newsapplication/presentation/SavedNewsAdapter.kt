@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,16 +19,19 @@ import com.example.newsapplication.data.api.Article
 import com.example.newsapplication.databinding.ArticleItemBinding
 import com.example.newsapplication.databinding.FragmentSavedBinding
 
-class SavedNewsAdapter(val listeners: Listeners): ListAdapter<Article, SavedNewsAdapter.SavedNewsHolder>(DiffCallback()) {
+class SavedNewsAdapter(val listeners: Listeners): RecyclerView.Adapter<SavedNewsAdapter.SavedNewsHolder>() {
 
     lateinit var binding: ArticleItemBinding
 
-    var savedNewsList = mutableListOf<Article>()
-    fun updateData(currentArticle: Article){
-        savedNewsList.add(currentArticle)
-        this.submitList(savedNewsList)
-        Log.d("TAG", "${savedNewsList.size}")
+    var savedArticleList = mutableListOf<Article>()
+    fun setList(newList: List<Article>){
+        val callback = NewsUtilCallback(savedArticleList, newList)
+        val diffResult = DiffUtil.calculateDiff(callback)
+        savedArticleList.clear()
+        savedArticleList.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
     }
+
 
     inner class SavedNewsHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = ArticleItemBinding.bind(item)
@@ -76,8 +80,10 @@ class SavedNewsAdapter(val listeners: Listeners): ListAdapter<Article, SavedNews
     }
 
     override fun onBindViewHolder(holder: SavedNewsHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(savedArticleList[position])
     }
+
+    override fun getItemCount(): Int = savedArticleList.size
 
 //    override fun getItemCount(): Int = savedNewsList.size
 

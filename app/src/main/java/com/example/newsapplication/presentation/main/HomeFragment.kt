@@ -80,9 +80,11 @@ class HomeFragment : Fragment(), Listeners, SearchView.OnQueryTextListener {
         viewModel.myResponse.observe(viewLifecycleOwner, Observer {articles ->
             binding.progressBar.isGone = true
             articles.forEach { article ->
+                article.id = 0
                 if (article.urlToImage == null ) article.urlToImage = NO_IMAGE_URL
                 if (article.title == null ) article.title = "No Title"
                 if (article.author == null ) article.author = "No Author"
+                if (article.id == null) article.author = "null"
             }
             adapter.setList(articles)
 

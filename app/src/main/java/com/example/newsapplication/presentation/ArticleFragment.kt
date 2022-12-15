@@ -8,15 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.newsapplication.R
 import com.example.newsapplication.data.api.Article
+import com.example.newsapplication.data.room.SavedArticleViewModel
 import com.example.newsapplication.databinding.FragmentArticleBinding
 import com.example.newsapplication.presentation.main.NewsAdapter
 
@@ -24,6 +27,7 @@ class ArticleFragment : Fragment(), Listeners {
 
     private lateinit var binding: FragmentArticleBinding
     private lateinit var adapter: SavedNewsAdapter
+    private lateinit var mSavedArticleViewModel: SavedArticleViewModel
     private val args by navArgs<ArticleFragmentArgs>()
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -40,6 +44,7 @@ class ArticleFragment : Fragment(), Listeners {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mSavedArticleViewModel = ViewModelProvider(this)[SavedArticleViewModel::class.java]
 
         binding.webview.webViewClient = WebViewClient()
         binding.webview.loadUrl(args.currentArticle.url)
@@ -47,8 +52,25 @@ class ArticleFragment : Fragment(), Listeners {
         adapter = SavedNewsAdapter(this)
 
         binding.favouriteButton.setOnClickListener {
-            adapter.updateData(args.currentArticle)
-            Toast.makeText(requireContext(), "Article saved", Toast.LENGTH_LONG).show()
+
+            val currentArticle = Article(0,
+                args.currentArticle.title,
+                args.currentArticle.author,
+                args.currentArticle.content,
+                args.currentArticle.description,
+                args.currentArticle.publishedAt,
+                args.currentArticle.url,
+                args.currentArticle.urlToImage)
+
+            mSavedArticleViewModel.savedArticles.observe(viewLifecycleOwner){
+                if (currentArticle in it){
+                    Log.d("Nigger", "There is")
+                } else {
+                    Log.d("Nigger", "There is not(")
+                }
+            }
+
+            mSavedArticleViewModel.saveArticle(currentArticle)
         }
     }
 

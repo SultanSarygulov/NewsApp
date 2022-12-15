@@ -74,6 +74,7 @@ class NewsAdapter(val listeners: Listeners): RecyclerView.Adapter<NewsAdapter.Vi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d("Nigger", "${articleList[position].id}")
         holder.bind(articleList[position])
     }
 
